@@ -1,0 +1,31 @@
+<div class="flex flex-col max-w-3xl mx-auto">
+  <h1 class="text-xl font-bold text-center bg-green-300">
+    Tracking the Satallites
+  </h1>
+
+  <%= button_to :get_satellites, class:"p-3 mx-auto my-2  rounded-lg border", form_class:"mx-auto" do %>
+    Get Satellites
+  <% end %>
+
+  <p class="mx-auto my-2">
+  Here are <%= Satellite.count %> satallites currently orbiting the earth.
+  </p>
+
+  <table class="mb-4 border center">
+    <tr class="border">
+      <th class="border">Satallite Name</th>
+      <th class="border">Satallite ID number</th>
+    </tr>
+    <% Satellite.all.each do |satellite| %>
+      <tr class="border">
+        <td class="text-center border"><%= satellite.name %></td>
+        <td class="text-center border"><%= link_to satellite.satellite_id, satellite %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <label for="lat-and-long-position">
+    <input class="mr-3" type="text" placeholder="123.000, 12345.945" id="lat-and-long-position">
+    Enter your location (Latitude, Longitude)
+  </label>
+</div>

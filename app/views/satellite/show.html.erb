@@ -1,0 +1,48 @@
+<div class="flex flex-col max-w-3xl mx-auto w-96">
+  <h1 class="text-3xl font-bold text-center">
+    Satellite : <%= @satellite.name %>
+  </h1>
+
+  <h2 class="py-3 mx-auto text-2xl font-bold">Key Information</h2>
+  <!--
+  This is a grid rather than a strict table as the cells are being used for
+  presentation of information rather than strict x/y association between
+  data and row/col headings
+  -->
+  <div class="my-3 border">
+    <div class="m-1 font-bold text-center border">Details</div>
+    <div class="border grid place-content-around grid-cols-2">
+      <div class="m-1 font-bold text-center border">Name</div>
+      <div class="m-1 font-bold text-center border">ID</div>
+      <div class="m-1 text-center border"><%= @satellite.name %></div>
+      <div class="m-1 text-center border"><%= @satellite.satellite_id %></div>
+    </div>
+    <div class="m-1 font-bold text-center border">Position</div>
+    <div class="border grid grid-cols-2">
+      <div class="m-1 font-bold text-center border">Latitude</div>
+      <div class="m-1 font-bold text-center border">Longitude</div>
+      <div class="m-1 text-center border"><%= @satellite.latitude %></div>
+      <div class="m-1 text-center border"><%= @satellite.longitude %></div>
+    </div>
+  </div>
+
+  <div data-controller="satellite" class="mx-auto ">
+    <button class="p-4 my-3 border rounded-lg hover:ring hover:ring-blue-500/75"
+            data-action="click->satellite#refereshPosition">
+            Update Position
+    </button>
+  </div>
+
+  <div class="overflow-hidden w-100 rounded-xl">
+    <%= js_map [{latitude: @satellite.latitude,
+                 longitude: @satellite.longitude}],
+                 controls: true,
+                 zoom: 1
+     %>
+  </div>
+
+  <%= link_to satellite_index_path, class: "hover:ring hover:ring-blue-500/75 rounded-lg mx-auto my-3" do %>
+    <button class="p-4 border rounded-lg">Back to the list of Satellites</button>
+  <% end %>
+</div>
+
