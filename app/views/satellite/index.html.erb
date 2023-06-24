@@ -1,6 +1,6 @@
-<div class="flex flex-col max-w-3xl mx-auto">
+<div class="flex flex-col mx-auto">
   <h1 class="text-3xl font-bold text-center">
-    Satellites index page
+    Satellites
   </h1>
 
   <div data-controller="satellite" class="flex flex-col">
@@ -8,7 +8,7 @@
       <label for="satellite-number" class="">Max number of Satellites :</label>
       <input id="satellite-number"
              type="number"
-             class="border-none bg-indigo-950 max-w-min"
+             class="border-none w-28 bg-indigo-950"
              data-satellite-target="satelliteNumber"
              min=1 placeholder=20>
     </div>
@@ -19,40 +19,42 @@
     </button>
   </div>
 
-  <p class="mx-auto my-2">
+  <p class="mx-auto my-2 text-center">
   Here are <%= @satellites.count %> satallites currently orbiting the earth.
   </p>
 
-  <table class="mx-auto mb-4 border center w-96">
-    <tr class="border">
-      <th class="text-center border">
+  <div class="mx-auto mb-4 border md:table center">
+    <div class="border md:table-row">
+      <div class="px-2 py-1 font-bold text-center border md:table-cell">
         Satallite Name
-      </th>
-      <th class="text-center border">
+      </div>
+      <div class="px-2 py-1 font-bold text-center border md:table-cell">
         Satallite ID
-      </th>
-    </tr>
+      </div>
+    </div>
     <% @satellites.all.each do |satellite| %>
-      <tr class="border">
-        <td class="text-center border">
+      <div class="border md:table-row">
+        <div class="px-2 py-1 text-center border md:table-cell">
           <%= satellite.name %>
-        </td>
-        <td class="text-center border">
+        </div>
+        <div class="px-2 py-1 text-center border md:table-cell">
           <%= link_to satellite.satellite_id,
                       satellite,
                       class: "hover:ring hover:ring-blue-500/75 rounded-lg p-1"
           %>
-        </td>
-      </tr>
+        </div>
+      </div>
     <% end %>
-  </table>
+  </div>
 
-  <label for="lat-and-long-position">
-    <input class="mr-3"
+  <div class="flex flex-col mx-auto">
+    <input class=""
            type="text"
            placeholder="123.000, 12345.945"
            id="lat-and-long-position">
-    Enter your location (Latitude, Longitude)
-  </label>
+    <label for="lat-and-long-position" class="text-center">
+      Enter your location (Latitude, Longitude)
+    </label>
+  </div>
 </div>
 
