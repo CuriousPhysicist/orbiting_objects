@@ -5,11 +5,9 @@ export default class extends Controller {
   static targets = ["satelliteNumber"]
 
   connect() {
-    console.log('connected')
   }
 
   refereshPosition() {
-    console.log('button pressed')
     location.reload()
   }
 
